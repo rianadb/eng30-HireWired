@@ -49,3 +49,17 @@ class UserRegistrationForm(UserCreationForm):
             "password1",
             "password2",
         ]
+
+
+class UserAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        max_length=20,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control" }))
+
+    password = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password", "class": "form-control"}
+        ),
+    )

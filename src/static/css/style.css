@@ -6,3 +6,15 @@
     justify-content: center;
     height: 100vh;
 }
+
+div.errors {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+ul.errors-list {
+    list-style: none;
+    color: #dc3545;
+    padding-left: 0;
+}

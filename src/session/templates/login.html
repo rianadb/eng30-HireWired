@@ -5,6 +5,35 @@
 {% block content %}
     <div class="body-container">
         <h1>Log In</h1>
-        <p>Lorem ipsum dolor sit amet...</p>
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="username" class="form-label">{{ form.username.label }}</label>
+                        {{ form.username }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="password" class="form-label">{{ form.password.label }}</label>
+                        {{ form.password }}
+                    </div>
+                </div>
+                {% if form.errors %}
+                    <div class="errors">
+                        <ul class="errors-list">
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>
+                                        <i class="bi bi-exclamation-circle"></i> {{ errors.0|escape }}
+                                    </li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
     </div>
 {% endblock %}
