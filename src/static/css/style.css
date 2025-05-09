@@ -1,0 +1,8 @@
+.form-container {
+    display: block;
+    margin: 0 auto;
+    width: 50vw;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
