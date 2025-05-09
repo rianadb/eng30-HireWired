@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from pages.views import homepage_view, about_view
+from pages.views import homepage_view, about_view, logout_view
 from session.views import register_view, login_view
 
 urlpatterns = [
@@ -28,4 +28,5 @@ urlpatterns = [
     path('about/', about_view, name='about_view'),
     path('register/', register_view, name='register_view'),
     path('login/', login_view, name='login_view'),
+    path('logout/', logout_view, name='logout_view'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

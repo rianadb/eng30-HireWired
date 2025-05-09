@@ -9,8 +9,8 @@ def register_view(request, *args, **kwargs):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(reverse("login_view"))
+            login(request, form.save())
+            return redirect(reverse("homepage_view"))
     else:
         form = UserRegistrationForm()
     context = {

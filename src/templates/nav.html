@@ -18,10 +18,17 @@
         
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout_view' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link nav-link">Log Out</button>
+                {% else %}
                 <a href="../login/" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
                 <a href="../register/" class="nav-link">Sign Up</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
 
