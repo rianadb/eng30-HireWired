@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # created apps
     "pages",
     "session",
+    "findjob",
+    "hireworkers",
 ]
 
 MIDDLEWARE = [

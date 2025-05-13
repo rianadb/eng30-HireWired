@@ -21,6 +21,8 @@ from django.conf.urls.static import static
 
 from pages.views import homepage_view, about_view, logout_view
 from session.views import register_view, login_view
+from findjob.views import find_jobs_view
+from hireworkers.views import hire_workers_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,4 +31,6 @@ urlpatterns = [
     path('register/', register_view, name='register_view'),
     path('login/', login_view, name='login_view'),
     path('logout/', logout_view, name='logout_view'),
+    path('jobs/', find_jobs_view, name='find_jobs_view'),
+    path('workers/', hire_workers_view, name='hire_workers_view'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
