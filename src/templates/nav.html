@@ -1,5 +1,8 @@
 {% load static %}
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="navbar-brand">
+        <div class="nav-logo"></div>
+    </div>
     <!-- <div class="landing-buttons"> -->
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
@@ -12,7 +15,7 @@
                 <a href="../jobs/" class="nav-link">Find a Job</a>
             </li>
             <li class="nav-item">
-                <a href="../about/" class="nav-link">About</a>
+                <a href="../about/" class="nav-link">About Us</a>
             </li>
         </ul>
         
@@ -23,10 +26,10 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-link nav-link">Log Out</button>
                 {% else %}
-                <a href="../login/" class="nav-link">Login</a>
+                <a href="../login/" class="nav-link">Login </a>
             </li>
             <li class="nav-item">
-                <a href="../register/" class="nav-link">Sign Up</a>
+                <a href="../register/" class="nav-link">Sign Up </a>
             </li>
             {% endif %}
         </ul>

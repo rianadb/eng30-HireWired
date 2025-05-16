@@ -17,10 +17,14 @@
                 integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" 
                 crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+        {% block add_css %}{% endblock %}
     </head>
     <body>
         {% block nav %}{% endblock %}
         {% block content %}{% endblock %}
+        <footer>{% block footer %}{% endblock  %}</footer>
     </body>
     <!-- Add scripts if needed -->
 </html>
