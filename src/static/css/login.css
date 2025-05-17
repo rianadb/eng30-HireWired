@@ -130,6 +130,8 @@ input[type="password"]:focus {
 .login-options a {
     color: #3498db;
     text-decoration: none;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .login-options a:hover {

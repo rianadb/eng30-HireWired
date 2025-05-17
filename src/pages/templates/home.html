@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock  %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
 {% block content %}
-    <div class="body-container">
-        <h1>HireWired</h1>
-        <p>Lorem ipsum dolor sit amet...</p>
-    </div>
+<div class="homepage-container">
+    <!-- Header Section -->
+    <header class="header">
+        <h1>HIREWIRED</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam...</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search" id="searchInput">
+            <button class="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+    </header>
+
+    {% include "home_categ.html" %}
+</div>
+<script src="{% static 'js/home_script.js' %}"></script>
 {% endblock %}
 {% block footer %}
     {% include 'footer.html' %}
