@@ -9,3 +9,23 @@ body {
     display: block;
     margin: 50px;
 }
+
+ul.errors-list {
+    list-style: none;
+    color: #dc3545;
+    padding-left: 0;
+}
+
+.job-list {
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+}
+
+a.categories-nav {
+  color: black;
+  text-decoration: none;
+}
+
+a.categories-nav:hover {
+  color: #2db9a2;
+}
