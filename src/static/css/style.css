@@ -1,35 +1,11 @@
 body {
-    padding-top: 70px; 
-    padding-bottom: 500px;
+  font-family: 'Inter', sans-serif;
+  padding-top: 80px;
+  position: relative;
+  background-color: #f4f6f8;
 }
 
 .body-container {
     display: block;
     margin: 50px;
-}
-
-.form-container {
-    display: block;
-    margin: 0 auto;
-    width: 50vw;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-div.errors {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-ul.errors-list {
-    list-style: none;
-    color: #dc3545;
-    padding-left: 0;
-}
-
-.job-list {
-    max-height: calc(100vh - 200px);
-    overflow-y: auto;
 }
