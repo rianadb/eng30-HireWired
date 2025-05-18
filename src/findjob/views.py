@@ -10,7 +10,7 @@ def find_jobs_view(request, *args, **kwargs):
     search_query = request.GET.get("search_query")
 
     if search_query:
-        jobs = jobs.filter(name__icontains=search_query) or jobs.filter(description__icontains=search_query) or jobs.filter(category__icontains=search_query)
+        jobs = jobs.filter(category__icontains=search_query) or jobs.filter(name__icontains=search_query) or jobs.filter(description__icontains=search_query)
 
     for job in jobs:
         if job.details:
