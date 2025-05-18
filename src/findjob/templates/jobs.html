@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
@@ -123,7 +124,7 @@
                                     <p class="card-text float-start">{{ job.description }}</p>
                                 </div>
                                 <div class="col-sm-3">
-                                    <a href="#" class="btn btn-primary">See more</a>
+                                    <button type="button" class="btn btn-primary show-details-btn" id="{{ job.name }}">See more</button>
                                 </div>
                             </div>
                         </div>
@@ -131,8 +132,8 @@
                 {% endfor %}
             </div>
             <div class="col">
-                <div class="card mb-3 h-100">
-                    <!-- <div class="card-body">
+                <!--<div class="card mb-3 h-100">
+                    <div class="card-body">
                         <div class="row mb-3">
                             <h2 class="card-title">Job Name</h2>
                             <p class="card-text float-start">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
@@ -164,43 +165,44 @@
                             </div>
                         </div>
                     </div> -->
-
                     {% for job in jobs %}
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <h2 class="card-title">{{ job.name }}</h2>
-                            <p class="card-text float-start">{{ job.description }}</p>
-                            <div>
-                                <a href="#" class="btn btn-primary">Apply</a>
-                            </div>
-                        </div>
-                        
-                        <div class="row mb-3">
-                            <div class="col">
-                                <h4 class="card-subtitle">Job Details</h4>
-                                <p class="card-text">Looking for workers who satisfy the following qualifications.</p>
-                                <h6 class="card-subtitle">Skills and Qualifications</h6>
-                                <ul>
-                                    {% for item in job.details %}
-                                        <li>{{ item }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-                                <h6 class="card-subtitle">Qualifications</h6>
-                                <ul>
-                                    <li>Lsdfdh</li>
-                                    <li>dfgdhj</li>
-                                    <li>asdfgh</li>
-                                </ul> -->
-                            </div>
-                            <div class="col">
-                                <div class="row mb-3">
-                                    <h4 class="card-subtitle">Shift and Schedule</h4>
-                                    <p class="card-text">{{ job.schedule }}</p>
+                    <div class="card mb-3 h-100 job-details" id="details-{{ job.name }}" style="display:none;">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <h2 class="card-title">{{ job.name }}</h2>
+                                <p class="card-text float-start">{{ job.description }}</p>
+                                <div>
+                                    <a href="#" class="btn btn-primary">Apply</a>
                                 </div>
-                                <div class="row mb-3">
-                                    <h4 class="card-subtitle">Pay/Salary</h4>
-                                    <p class="card-text">P {{ job.salary }} per hr / day</p>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <h4 class="card-subtitle">Job Details</h4>
+                                    <p class="card-text">Looking for workers who satisfy the following qualifications.</p>
+                                    <h6 class="card-subtitle">Skills and Qualifications</h6>
+                                    <ul>
+                                        {% for item in job.details %}
+                                            <li>{{ item }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                    <h6 class="card-subtitle">Qualifications</h6>
+                                    <ul>
+                                        <li>Lsdfdh</li>
+                                        <li>dfgdhj</li>
+                                        <li>asdfgh</li>
+                                    </ul> -->
+                                </div>
+                                <div class="col">
+                                    <div class="row mb-3">
+                                        <h4 class="card-subtitle">Shift and Schedule</h4>
+                                        <p class="card-text">{{ job.schedule }}</p>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <h4 class="card-subtitle">Pay/Salary</h4>
+                                        <p class="card-text">P {{ job.salary }} per hr / day</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -210,4 +212,5 @@
             </div>    
         </div>
     </div>
+    <script src="{% static 'js/job_script.js' %}"></script>
 {% endblock %}
