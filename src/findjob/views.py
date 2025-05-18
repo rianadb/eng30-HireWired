@@ -1,12 +1,15 @@
 from django.shortcuts import render
+from .models import Job
+
+from .forms import JobSearchForm
 
 # Create your views here.
 def find_jobs_view(request, *args, **kwargs):
-    if request.GET.get("job"):
-        ...
+    jobs = Job.objects.all()
+    
 
     context = {
         # "form" : form,
-        # "jobs" : jobs,
+        "jobs" : jobs,
     }
     return render(request, "jobs.html", context)
