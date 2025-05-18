@@ -9,7 +9,7 @@
         <form method="GET">
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Search">
+                    <input type="text" name="search_query" id="search" class="form-control" placeholder="Search">
                 </div>
             </div>
         </form>
@@ -178,13 +178,20 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <h4 class="card-subtitle">Job Details</h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                                <p class="card-text">Looking for workers who satisfy the following qualifications.</p>
+                                <h6 class="card-subtitle">Skills and Qualifications</h6>
+                                <ul>
+                                    {% for item in job.details %}
+                                        <li>{{ item }}</li>
+                                    {% endfor %}
+                                </ul>
+                                <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
                                 <h6 class="card-subtitle">Qualifications</h6>
                                 <ul>
                                     <li>Lsdfdh</li>
                                     <li>dfgdhj</li>
                                     <li>asdfgh</li>
-                                </ul>
+                                </ul> -->
                             </div>
                             <div class="col">
                                 <div class="row mb-3">

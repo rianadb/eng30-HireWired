@@ -21,7 +21,8 @@ for _, row in df.iterrows():
         description=row['Description'],
         category=row['Category'],
         schedule=row['Typical Daily Schedule'],
-        salary=row['Approx. Hourly Rate (PHP)']
+        salary=row['Approx. Hourly Rate (PHP)'],
+        details=row['Details'],
     )
 
 print("Jobs imported!")

@@ -9,3 +9,8 @@ class JobSearchForm(forms.Form):
             'class': 'form-control'
         })
     )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs,pop("request", None)
+
+        

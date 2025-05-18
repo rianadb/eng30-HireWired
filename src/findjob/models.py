@@ -7,3 +7,4 @@ class Job(models.Model):
     category = models.CharField(max_length=255)
     schedule = models.CharField(max_length=255)
     salary = models.DecimalField(decimal_places=2, max_digits=10)
+    details = models.TextField(blank=True)
