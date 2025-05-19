@@ -29,3 +29,8 @@ a.categories-nav {
 a.categories-nav:hover {
   color: #2db9a2;
 }
+
+img.profile-picture {
+  width: 100%;
+  height: 100%;
+}
