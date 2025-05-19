@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "session",
     "findjob",
     "hireworkers",
+    "profiles",
 ]
 
 MIDDLEWARE = [
