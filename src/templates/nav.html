@@ -5,23 +5,26 @@
     </div>
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
-                <a href="../" class="nav-link">Home</a> 
+                <a href="{% url 'homepage_view' %}" class="nav-link">Home</a> 
             </li>
             <li class="nav-item">
-                <a href="../workers/" class="nav-link">Hire Workers</a>
+                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
             </li>
             <li class="nav-item">
-                <a href="../jobs/" class="nav-link">Find a Job</a>
+                <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
             </li>
             <li class="nav-item">
-                <a href="../about/" class="nav-link">About Us</a>
+                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
             </li>
         </ul>
         
         <ul class="navbar-nav ms-auto">
             {% if user.is_authenticated %}
             <li class="nav-item">
-                <a href="../profile/" class="nav-link">Profile</a>
+                <a class="nav-link">Welcome, {{ user.username }}</a>
+                </li>
+            <li class="nav-item">
+                <a href="{% url 'edit_profile_view' %}" class="nav-link">Edit Profile</a>
             </li>
             <li class="nav-item">
                 <form method="POST" action="{% url 'logout_view' %}">
@@ -31,10 +34,10 @@
             </li>
                 {% else %}
             <li class="nav-item">
-                <a href="../login/" class="nav-link">Login </a>
+                <a href="{% url 'login_view' %}" class="nav-link">Login </a>
             </li>
             <li class="nav-item">
-                <a href="../register/" class="nav-link">Sign Up </a>
+                <a href="{% url 'register_view' %}" class="nav-link">Sign Up </a>
             </li>
             {% endif %}
         </ul>

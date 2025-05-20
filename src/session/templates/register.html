@@ -1,8 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
 {% block content %}
+    <div class="split-screen">
+        <div class="illustration-container">
+            <img id="illustration" src="{% static 'images/illustration1.png' %}" alt="Illustration">
+        </div>
 
-{% endblock %}
+        <div class="signup-form">
+            <form method="POST">
+                <div class="row mb-3">
+                    <div class="col">
+                        <h4 class="form-label">Are you applying as a Worker or an Employer?</h4>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <a href="{% url 'register_worker_view' %}">
+                        <button type="button" class="btn btn-primary">
+                                Worker
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col">
+                    <a href="{% url 'register_employer_view' %}">
+                        <button type="button" class="btn btn-primary">
+                            Employer
+                        </button>
+                    </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/register_script.js' %}"></script>
+{% endblock %}`
