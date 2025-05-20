@@ -1,29 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
-    try {
-        const showJobDetailsButtons = document.querySelectorAll(".show-details-btn");
-        const detailCards = document.querySelectorAll(".job-details");
-        showJobDetailsButtons.forEach((button) => {
-            button.addEventListener("click", function () {
-                // const jobId = this.getAttribute("data-job-id");
-                // const jobDetails = document.querySelector(`.job-details-${jobId}`);
-                // if (jobDetails) {
-                //     jobDetails.classList.toggle("hidden");
-                // }
+    const showDetailsButtons = document.querySelectorAll(".show-details-btn");
+    const detailCards = document.querySelectorAll(".job-details");
 
-                detailCards.forEach((card) => {
-                    card.style.display = "none";
-                });
-                console.log("Button clicked");
-                const jobId = button.id;
-                const jobDetails = document.getElementById('details-' + jobId);
-                if (jobDetails) {
-                    jobDetails.style.display = "block";
-                }
+    showDetailsButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            detailCards.forEach(card => {
+                card.style.display = "none";
             });
+
+            const jobId = this.id.replace("btn-", "");
+            const detailCard = document.getElementById(`details-${jobId}`);
+            if (detailCard) {
+                detailCard.style.display = "block";
+                detailCard.classList.add("page-fade-in");
+            }
         });
-    }
+    });
 
-    catch {
-
-    }
+    const fadeIns = document.querySelectorAll(".page-fade-in");
+    fadeIns.forEach((el, i) => {
+        el.style.animationDelay = `${i * 100}ms`;
+    });
 });
