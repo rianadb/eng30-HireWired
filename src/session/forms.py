@@ -9,7 +9,7 @@ class UserRegistrationForm(UserCreationForm):
     last_name = forms.CharField(
         max_length=30,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control" })
+        widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control", 'autofocus': 'autofocus', })
         )
     first_name = forms.CharField(
         max_length=30, 
@@ -63,7 +63,7 @@ class EmployerRegistrationForm(UserCreationForm):
     last_name = forms.CharField(
         max_length=30,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control" })
+        widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control", 'autofocus': 'autofocus', })
         )
     first_name = forms.CharField(
         max_length=30, 
