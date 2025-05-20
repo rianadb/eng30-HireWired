@@ -6,6 +6,7 @@
 {% block content %}
 <div class="body-container">
     <h1>Profile</h1>
+    <form method="post" enctype="multipart/form-data">
     <div class="row mb-3">
         <div class="col col-sm-1 col-md-3 col-lg-3">
             <!-- <label for="profile_picture" class="form-label">{{ profile_form.profile_picture.label }}</label> -->
@@ -23,7 +24,6 @@
             </div>
         </div>
         <div class="col col-sm-1 col-md-9 col-lg-9">
-            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
                     <div class="col mb-3">
@@ -70,9 +70,10 @@
                         <button type="submit" class="btn btn-primary w-auto">Save Changes</button>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
+    </form>
 </div>
 {% endblock %}
 {% block footer %}

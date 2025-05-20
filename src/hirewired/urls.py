@@ -23,7 +23,7 @@ from pages.views import homepage_view, about_view, logout_view
 from session.views import register_worker_view, register_employer_view, login_view, register_view
 from findjob.views import find_jobs_view
 from hireworkers.views import hire_workers_view
-from profiles.views import edit_profile_view
+from profiles.views import edit_profile_view, edit_employer_profile_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,5 +36,6 @@ urlpatterns = [
     path('logout/', logout_view, name='logout_view'),
     path('jobs/', find_jobs_view, name='find_jobs_view'),
     path('workers/', hire_workers_view, name='hire_workers_view'),
-    path('profile/', edit_profile_view, name='edit_profile_view'),
+    path('profile/worker/', edit_profile_view, name='edit_profile_view'),
+    path('profile/employer/', edit_employer_profile_view, name='edit_employer_profile_view'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

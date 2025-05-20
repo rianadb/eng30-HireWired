@@ -42,9 +42,15 @@
                     Welcome, {{ user.username }}
                 </div>
                 </li>
+            {% if user.user_type == 'worker' %}
             <li class="nav-item">
                 <a href="{% url 'edit_profile_view' %}" class="nav-link">Edit Profile</a>
             </li>
+            {% elif user.user_type == 'employer' %}
+            <li class="nav-item">
+                <a href="{% url 'edit_employer_profile_view' %}" class="nav-link">Edit Profile</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
                 <form method="POST" action="{% url 'logout_view' %}">
                     {% csrf_token %}

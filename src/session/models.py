@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import UserManager
+from profiles.models import WorkerProfile, EmployerProfile
 # Create your models here.
 
 class User(AbstractUser):
@@ -27,3 +28,12 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+    
+    @property
+    def profile(self):
+        """ Returns the correct profile object based on user_type """
+        if self.user_type == "worker":
+            return WorkerProfile.objects.filter(user=self).first()
+        elif self.user_type == "employer":
+            return EmployerProfile.objects.filter(user=self).first()
+        return None  # No profile exists
