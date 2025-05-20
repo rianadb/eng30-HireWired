@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from pages.views import homepage_view, about_view, logout_view
-from session.views import register_view, login_view
+from session.views import register_worker_view, register_employer_view, login_view, register_view
 from findjob.views import find_jobs_view
 from hireworkers.views import hire_workers_view
 from profiles.views import edit_profile_view
@@ -30,6 +30,8 @@ urlpatterns = [
     path('', homepage_view, name='homepage_view'),
     path('about/', about_view, name='about_view'),
     path('register/', register_view, name='register_view'),
+    path('register/worker/', register_worker_view, name='register_worker_view'),
+    path('register/employer/', register_employer_view, name='register_employer_view'),
     path('login/', login_view, name='login_view'),
     path('logout/', logout_view, name='logout_view'),
     path('jobs/', find_jobs_view, name='find_jobs_view'),

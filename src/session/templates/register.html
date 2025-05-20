@@ -1,75 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block add_css %}
-    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
-{% endblock %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
 {% block content %}
-    <div class="split-screen">
-        <div class="illustration-container">
-            <img id="illustration" src="{% static 'images/illustration1.png' %}" alt="Illustration">
-        </div>
 
-        <div class="signup-form">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="last_name" class="form-label"><i class="fa fa-user"></i> {{ form.last_name.label }}</label>
-                        {{ form.last_name }}
-                    </div>
-                    <div class="col mb-3">
-                        <label for="first_name" class="form-label"><i class="fa fa-user"></i> {{ form.first_name.label }}</label>
-                        {{ form.first_name }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="username" class="form-label"><i class="fa fa-user-circle"></i> {{ form.username.label }}</label>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {{ form.username.errors }}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="email" class="form-label"><i class="fa fa-envelope"></i> {{ form.email.label }}</label>
-                        {{ form.email }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="password1" class="form-label"><i class="fa fa-lock"></i> {{ form.password1.label }}</label>
-                        {{ form.password1 }}
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
-                        <label for="password2" class="form-label"><i class="fa fa-lock"></i> {{ form.password2.label }}</label>
-                        {{ form.password2 }}
-                    </div>
-                </div>
-                {% if form.errors %}
-                    <div class="errors">
-                        <ul class="errors-list">
-                            {% for field, errors in form.errors.items %}
-                                {% for error in errors %}
-                                    <li>
-                                        <i class="bi bi-exclamation-circle"></i> {{ errors.0|escape }}
-                                    </li>
-                                {% endfor %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-                {% endif %}
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-        </div>
-    </div>
-    <script src="{% static 'js/register_script.js' %}"></script>
 {% endblock %}
