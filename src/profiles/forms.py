@@ -14,6 +14,7 @@ class UserForm(forms.ModelForm):
         required=False)
     
     email = forms.EmailField(
+        required=False,
         widget=forms.EmailInput(
             attrs={"placeholder": "juandelacruz@gmail.com", "class": "form-control"}
         )

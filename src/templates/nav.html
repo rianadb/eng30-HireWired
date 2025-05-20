@@ -7,6 +7,22 @@
             <li class="nav-item">
                 <a href="{% url 'homepage_view' %}" class="nav-link">Home</a> 
             </li>
+            
+            {% if user.user_type == 'worker' %}
+            <li class="nav-item">
+                <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
+            </li>
+            {% elif user.user_type == 'employer' %}
+            <li class="nav-item">
+                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
+            </li>
+            {% else %}
             <li class="nav-item">
                 <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
             </li>
@@ -16,6 +32,7 @@
             <li class="nav-item">
                 <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
             </li>
+            {% endif %}
         </ul>
         
         <ul class="navbar-nav ms-auto">
