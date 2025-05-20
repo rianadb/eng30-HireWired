@@ -17,17 +17,17 @@
                 {% csrf_token %}
                 <div class="row">
                     <div class="col mb-3">
-                        <label for="last_name" class="form-label"><i class="fa fa-user"></i> {{ form.last_name.label }}</label>
+                        <label for="last_name" class="form-label required"><i class="fa fa-user"></i> {{ form.last_name.label }}</label>
                         {{ form.last_name }}
                     </div>
                     <div class="col mb-3">
-                        <label for="first_name" class="form-label"><i class="fa fa-user"></i> {{ form.first_name.label }}</label>
+                        <label for="first_name" class="form-label required"><i class="fa fa-user"></i> {{ form.first_name.label }}</label>
                         {{ form.first_name }}
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="username" class="form-label"><i class="fa fa-user-circle"></i> {{ form.username.label }}</label>
+                        <label for="username" class="form-label required"><i class="fa fa-user-circle"></i> {{ form.username.label }}</label>
                         {{ form.username }}
                         {% if form.username.errors %}
                             <div class="alert alert-danger" role="alert">
@@ -50,13 +50,13 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="password1" class="form-label"><i class="fa fa-lock"></i> {{ form.password1.label }}</label>
+                        <label for="password1" class="form-label required"><i class="fa fa-lock"></i> {{ form.password1.label }}</label>
                         {{ form.password1 }}
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="password2" class="form-label"><i class="fa fa-lock"></i> {{ form.password2.label }}</label>
+                        <label for="password2" class="form-label required"><i class="fa fa-lock"></i> {{ form.password2.label }}</label>
                         {{ form.password2 }}
                     </div>
                 </div>
