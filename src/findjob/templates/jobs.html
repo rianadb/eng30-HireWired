@@ -10,15 +10,15 @@
 <div class="body-container page-fade-in">
     <h1 class="page-fade-in">Find Jobs</h1>
 
-    <div class="col page-fade-in">
-        <form method="GET" class="page-fade-in">
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="text" name="search_query" id="search" class="form-control" placeholder="Search">
-                </div>
-            </div>
-        </form>
+    <form method="GET" class="filter-form page-fade-in">
+    <div class="filter-box d-flex align-items-center">
+        <input type="text" name="search_query" class="form-control flex-grow-1" placeholder="Search by job name or description">
+        <input type="text" name="location" class="form-control location-input" placeholder="Filter by city">
+        <input type="number" name="min_salary" class="form-control salary-input" placeholder="Minimum salary" min="1">
+        <button type="submit" class="btn btn-primary">Search 🔍</button>
     </div>
+    </form>
+
 
     <div class="row page-fade-in">
         <div class="col job-list container page-fade-in">

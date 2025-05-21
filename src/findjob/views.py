@@ -4,17 +4,36 @@ from .models import Job, Application
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .forms import JobSearchForm
+from django.db.models import Q
 
 @login_required
 def find_jobs_view(request, *args, **kwargs):
     jobs = Job.objects.all()
-    search_query = request.GET.get("search_query")
+    search_query = request.GET.get("search_query", "")
+    location = request.GET.get("location", "")
+    min_salary = request.GET.get("min_salary", "")
 
+    # Apply search filter (across category, name, and description)
     if search_query:
-        jobs = jobs.filter(category__icontains=search_query) | \
-               jobs.filter(name__icontains=search_query) | \
-               jobs.filter(description__icontains=search_query)
+        jobs = jobs.filter(
+            Q(category__icontains=search_query) |
+            Q(name__icontains=search_query) |
+            Q(description__icontains=search_query)
+        )
 
+    # Apply location filter
+    if location:
+        jobs = jobs.filter(city__icontains=location)
+
+    # Apply salary filter
+    if min_salary:
+        try:
+            min_salary = int(min_salary)
+            jobs = jobs.filter(salary__gte=min_salary)
+        except ValueError:
+            pass  # Ignore invalid inputs gracefully
+
+    # Split the comma-separated details field
     for job in jobs:
         if job.details:
             job.details = job.details.split(",")

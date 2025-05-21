@@ -27,3 +27,65 @@
   opacity: 0;
 }
 
+.filter-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  overflow: hidden;
+  padding: 0;
+  gap: 0;
+  width: 100%;
+  max-width: 1300px; 
+  margin: 0 0 2rem 0; /* Removed auto centering */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+}
+
+.filter-box .form-control {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+}
+
+.filter-box .flex-grow-1 {
+  flex-grow: 1;
+}
+
+.filter-box .location-input,
+.filter-box .salary-input {
+  flex: 0 0 160px;
+}
+
+
+.filter-box .btn-primary {
+  border-radius: 0 999px 999px 0;
+  padding: 0.75rem 2.5rem; 
+  background-color: #1d4ed8;
+  border: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filter-box .btn-primary:hover {
+  background-color: #1e40af;
+}
+
+
+@media (max-width: 768px) {
+  .filter-box {
+    flex-direction: column;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  .filter-box .form-control,
+  .filter-box .btn-primary {
+    width: 100%;
+    border-radius: 999px !important;
+    margin-bottom: 10px;
+  }
+}
+
