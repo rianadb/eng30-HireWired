@@ -1,7 +1,7 @@
 from django import forms
 # from django.contrib.auth.models import User
 from session.models import User
-from .models import WorkerProfile, EmployerProfile
+from .models import WorkerProfile, EmployerProfile, Category
 
 class UserForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -53,6 +53,12 @@ class UserProfileForm(forms.ModelForm):
         widget=forms.FileInput(attrs={"class": "form-control" }), 
         required=False)
 
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Categories you work in"
+    )
     class Meta:
         model = WorkerProfile
         fields = [
@@ -60,6 +66,7 @@ class UserProfileForm(forms.ModelForm):
             'details',
             'certification',
             'profile_picture',
+            'categories',
         ]
 
 class EmployerProfileForm(forms.ModelForm):

@@ -10,7 +10,7 @@ django.setup()
 
 from session.models import User
 from findjob.models import Job, Application
-from profiles.models import WorkerProfile
+from profiles.models import WorkerProfile, Category
 
 csv_file_path = os.path.join(os.path.dirname(__file__), '../data/sample_users.csv')
 df = pd.read_csv(csv_file_path)
@@ -42,6 +42,9 @@ for _, row in df.iterrows():
 
     try:
         job = Job.objects.get(name=row['job_title'])
+        # if hasattr(profile, 'categories'):
+        category_obj, _ = Category.objects.get_or_create(name=job.category)
+        profile.categories.add(category_obj)
         Application.objects.create(worker=user, job=job)
         print(f"Application created for {user.username} for job '{job.name}'")
 

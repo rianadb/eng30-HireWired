@@ -2,18 +2,23 @@ from django.shortcuts import render, redirect
 from findjob.models import Job, Application
 from django.contrib.auth import get_user_model
 from .models import Review
+from profiles.models import Category
 
 # Create your views here.
 def hire_workers_view(request, *args, **kwargs):
     search_query = request.GET.get("search_query")
 
-    categories = Job.objects.values_list('category', flat=True).distinct()
-    categories = list(categories)
+    # categories = Job.objects.values_list('category', flat=True).distinct()
+    # categories = list(categories)
+    categories = Category.objects.all()
     selected_category = request.GET.get('category') or (categories[0] if categories else None)
     print(selected_category)
 
     applications = []
     if selected_category:
+        workers = get_user_model().objects.filter(
+            workerprofile__categories__name=selected_category
+        ).distinct()
         jobs_in_category = Job.objects.filter(category=selected_category)
         applications = Application.objects.filter(job__in=jobs_in_category)
         # worker_ids = applications.values_list('worker_id', flat=True).distinct()
@@ -29,7 +34,7 @@ def hire_workers_view(request, *args, **kwargs):
     context = {
         'categories': categories,
         'selected_category': selected_category,
-        # 'workers': workers,
+        'workers': workers,
         'applications': applications,
     }
     return render(request, 'workers.html', context)

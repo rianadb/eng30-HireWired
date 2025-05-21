@@ -44,15 +44,15 @@
                 </div>
             </div> -->
 
-            {% for app in applications %}
+            {% for worker in workers %}
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{ app.worker.workerprofile.profile_picture.url }}" class="card-img-top" alt="...">
+                    <img src="{{ worker.workerprofile.profile_picture.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ app.worker.get_full_name }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ app.job.name }}</h6>
-                        <p class="card-text">{{ app.worker.workerprofile.experience|truncatewords:20 }}</p>
-                        <a href="{% url 'hire_worker_profile_view' app.worker.id %}" class="btn btn-primary">View Profile</a>
+                        <h5 class="card-title">{{ worker.get_full_name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ worker.job.name }}</h6>
+                        <p class="card-text">{{ worker.workerprofile.experience|truncatewords:20 }}</p>
+                        <a href="{% url 'hire_worker_profile_view' worker.id %}" class="btn btn-primary">View Profile</a>
                     </div>
                 </div>
             </div>

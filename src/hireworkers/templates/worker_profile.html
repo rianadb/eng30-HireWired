@@ -23,12 +23,14 @@
                     {{ profile_form.profile_picture }}
                 </div>
             </div> -->
-            <div class="mb-3">
+            <div class="card">
                 {% if jobs %}
-                    <h6 class="card-title">Current Applications:</h6>
-                    <ul class="list-group">
+                    <ul class="list-group list-group-flush">
+                        <div class="card-header">
+                    Current Applications
+                </div>
                         {% for job in jobs %}
-                            <li class="list-group-item">
+                            <li class="list-group-item ">
                                 <strong>{{ job.name }}</strong>
                                 <br>
                                 <span class="text-muted">{{ job.category }}</span>

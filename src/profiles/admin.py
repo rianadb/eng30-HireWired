@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 # from django.contrib.auth.models import User
 # from .models import Profile
-from .models import WorkerProfile, EmployerProfile
+from .models import WorkerProfile, EmployerProfile, Category
 from session.models import User
 from session.admin import CustomUserAdmin
 
@@ -25,3 +25,4 @@ class UserAdmin(CustomUserAdmin):
 # # Unregister the default User admin and register the customized one
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+admin.site.register(Category)
