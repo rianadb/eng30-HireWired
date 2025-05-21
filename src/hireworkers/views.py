@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from findjob.models import Job, Application
 from django.contrib.auth import get_user_model
+from .models import Review
 
 # Create your views here.
 def hire_workers_view(request, *args, **kwargs):
@@ -37,9 +38,23 @@ def hire_worker_profile_view(request, worker_id):
     worker = get_user_model().objects.get(id=worker_id)
     applications = Application.objects.filter(worker=worker)
     jobs = [application.job for application in applications]
+    reviews = Review.objects.filter(worker=worker).order_by('-created_at')
 
+    if request.method == 'POST' and request.user.is_authenticated:
+        # rating = request.POST.get('rating')
+        comment = request.POST.get('comment')
+        if comment:
+            Review.objects.create(
+                worker=worker,
+                reviewer=request.user,
+                # rating=rating,
+                comment=comment
+            )
+        return redirect('hire_worker_profile_view', worker_id=worker_id)
+    
     context = {
         'worker': worker,
         'jobs': jobs,
+        'reviews': reviews,
     }
     return render(request, 'worker_profile.html', context)
