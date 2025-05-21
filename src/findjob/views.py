@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Job
+from .models import Job, Application
 import os
 from django.conf import settings
 from .forms import JobSearchForm
@@ -18,7 +18,8 @@ def find_jobs_view(request, *args, **kwargs):
             details = job.details.split(",")
             job.details = details
         
-
+    for job in Job.objects.all():
+        print(f"Job: {job.name}, Category: '{job.category}'")
     context = {
         # "form" : form,
         "jobs" : jobs,
@@ -52,7 +53,11 @@ def apply_for_job(request):
                     destination.write(chunk)
 
         # Optionally, log or save application data to a model
-
+        job_id = request.POST.get('job_id')
+        print(f"Job ID: {job_id}")
+        job = Job.objects.get(id=job_id)
+        worker = request.user
+        Application.objects.get_or_create(worker=worker, job=job)
         return redirect('find_jobs_view')  # Redirect back to the jobs page
 
     return redirect('find_jobs_view')

@@ -51,7 +51,9 @@
                             class="btn btn-primary apply-btn"
                             id="{{ job.name }}"
                             data-bs-toggle="modal"
-                            data-bs-target="#applyModal">
+                            data-bs-target="#applyModal"
+                            data-job-id="{{ job.id }}"
+                            data-job-title="{{ job.name|escapejs }}">
                             Apply
                             </button>
                             </div>
@@ -95,6 +97,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
+            <input type="hidden" name="job_id" id="modalJobId">
+            
         <div class="modal-body review-body">
           <p class="text-muted">Fill in your details to apply</p>
 
@@ -105,7 +109,7 @@
 
           <div class="mb-3">
             <label for="inputEmail" class="form-label fw-semibold">Email Address</label>
-            <input type="email" class="form-control" id="inputEmail" name="email" required>
+            <input type="email" class="form-control" id="inputEmail" name="email">
           </div>
 
           <div class="mb-3">
@@ -115,7 +119,7 @@
 
           <div class="mb-3">
             <label for="resumeFile" class="form-label fw-semibold">Resume (PDF)</label>
-            <input type="file" class="form-control" id="resumeFile" name="resume" accept=".pdf" required>
+            <input type="file" class="form-control" id="resumeFile" name="resume" accept=".pdf">
           </div>
 
           <div class="mb-3">

@@ -22,3 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
         el.style.animationDelay = `${i * 100}ms`;
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var applyModal = document.getElementById('applyModal');
+  applyModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var jobId = button.getAttribute('data-job-id');
+    document.getElementById('modalJobId').value = jobId;
+  });
+});

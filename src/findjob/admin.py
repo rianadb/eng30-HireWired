@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Job
+from .models import Job, Application
 # Register your models here.
 
 class JobAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class JobAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category')
 
 admin.site.register(Job, JobAdmin)
+admin.site.register(Application)
