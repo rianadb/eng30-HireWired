@@ -31,31 +31,31 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     contact_number = forms.CharField(
         label="Contact Number",
-        widget=forms.TextInput(attrs={"placeholder": "Contact Number", "class": "form-control" }), 
+        widget=forms.TextInput(attrs={"placeholder": "Contact Number", "class": "form-control"}), 
         required=False)
-        
+
     location = forms.CharField(
         label="Location",
-        widget=forms.TextInput(attrs={"placeholder": "Location", "class": "form-control" }), 
+        widget=forms.TextInput(attrs={"placeholder": "Location", "class": "form-control"}), 
         required=False)
-    
+
     experience = forms.CharField(
         label="Experience",
-        widget=forms.Textarea(attrs={"placeholder": "Experience", "class": "form-control" }), 
+        widget=forms.Textarea(attrs={"placeholder": "Experience", "class": "form-control"}), 
         required=False)
 
     details = forms.CharField(
         label="Details",
-        widget=forms.Textarea(attrs={"placeholder": "Details", "class": "form-control" }), 
+        widget=forms.Textarea(attrs={"placeholder": "Details", "class": "form-control"}), 
         required=False)
 
     profile_picture = forms.ImageField(
-        widget=forms.FileInput(attrs={"class": "form-control" }), 
+        widget=forms.FileInput(attrs={"class": "form-control"}), 
         required=False)
 
     certification = forms.FileField(
         label="Certification",
-        widget=forms.FileInput(attrs={"class": "form-control" }), 
+        widget=forms.FileInput(attrs={"class": "form-control"}), 
         required=False)
 
     categories = forms.ModelMultipleChoiceField(
@@ -64,15 +64,19 @@ class UserProfileForm(forms.ModelForm):
         required=False,
         label="Categories you work in"
     )
+
     class Meta:
         model = WorkerProfile
         fields = [
+            'contact_number',    
+            'location',           
             'experience',
             'details',
             'certification',
             'profile_picture',
             'categories',
         ]
+
 
 class EmployerProfileForm(forms.ModelForm):
     contact_number = forms.CharField(
@@ -97,6 +101,7 @@ class EmployerProfileForm(forms.ModelForm):
     class Meta:
         model = EmployerProfile
         fields = [
+            'contact_number',     
             'details',
             'addtl_docs',
             'profile_picture',

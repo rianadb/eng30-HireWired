@@ -2,22 +2,47 @@
 {% load static %}
 {% block add_css %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock  %}
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
-{% block content %}
-<div class="homepage-container">
-    <!-- Header Section -->
-    <header class="header">
-        <h1>HIREWIRED</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam...</p>
-    </header>
 
-    {% include "home_categ.html" %}
+{% block content %}
+<section class="hero-section">
+  <div class="video-background">
+    <video autoplay muted loop playsinline>
+      <source src="{% static 'videos/workplace-experience.mp4' %}" type="video/mp4">
+      <!-- Fallback image if video fails -->
+      <img src="{% static 'images/workplace-experience-fallback.jpg' %}" alt="Workplace background">
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <h5 class="hero-label animate-fade-in-up">THIS IS BLUECOLLAB</h5>
+    <h1 class="hero-heading animate-fade-in-up">The On Demand<br>Labor Platform</h1>
+    <p class="hero-subtext animate-fade-in-up">
+      Take control of your staffing. Get qualified people on demand.<br>
+      Low cost, no contracts, no minimums, no risk.
+    </p>
+    <div class="hero-buttons animate-fade-in-up">
+      <a href="#" class="btn-primary">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<div class="split-wave"></div>
+
+<div class="split-wave"></div>
+
+<div class="homepage-container">
+  {% include "home_categ.html" %}
 </div>
+
+
 <script src="{% static 'js/home_script.js' %}"></script>
 {% endblock %}
+
 {% block footer %}
     {% include 'footer.html' %}
 {% endblock %}

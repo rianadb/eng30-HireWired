@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const categories = [
-        { icon: "fas fa-briefcase", title: "Job Opportunities", description: "Find various job openings in your area." },
         { icon: "fas fa-tools", title: "Skilled Work", description: "Explore skilled work categories." },
         { icon: "fas fa-truck", title: "Logistics", description: "Opportunities in transportation and logistics." },
         { icon: "fas fa-hard-hat", title: "Construction", description: "Construction-related job openings." },
-        { icon: "fas fa-user-cog", title: "Technical Support", description: "Jobs in maintenance and technical support." }
+        { icon: "fas fa-user-cog", title: "Technical Support", description: "Jobs in maintenance and technical support." },
+        { icon: "fas fa-tractor", title: "Agriculture and Groundskeeping", description: "Farming, landscaping, and outdoor maintenance positions." },
+        { icon: "fas fa-broom", title: "Building and Grounds Maintenance", description: "Facility upkeep and property maintenance roles." }
     ];
+
     
     const carousel = document.getElementById("carousel");
     const prevBtn = document.querySelector(".prev");
