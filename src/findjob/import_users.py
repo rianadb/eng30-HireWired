@@ -33,11 +33,13 @@ for _, row in df.iterrows():
         defaults={
             'experience': row['experience'],
             'details': row['details'],
+            'location': row['location'],
         }
     )
     if not created:
         profile.experience = row['experience']
         profile.details = row['details']
+        profile.location = row['location']
         profile.save()
 
     try:

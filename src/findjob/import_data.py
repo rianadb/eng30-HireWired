@@ -23,6 +23,7 @@ for _, row in df.iterrows():
         schedule=row['Typical Daily Schedule'],
         salary=row['Approx. Hourly Rate (PHP)'],
         details=row['Details'],
+        city=row['Location'],
     )
 
 print("Jobs imported!")
