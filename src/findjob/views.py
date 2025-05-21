@@ -1,31 +1,46 @@
+import os
 from django.shortcuts import render, redirect
 from .models import Job, Application
-import os
+from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from .forms import JobSearchForm
 
-# Create your views here.
+@login_required
 def find_jobs_view(request, *args, **kwargs):
-
     jobs = Job.objects.all()
     search_query = request.GET.get("search_query")
 
     if search_query:
-        jobs = jobs.filter(category__icontains=search_query) or jobs.filter(name__icontains=search_query) or jobs.filter(description__icontains=search_query)
+        jobs = jobs.filter(category__icontains=search_query) | \
+               jobs.filter(name__icontains=search_query) | \
+               jobs.filter(description__icontains=search_query)
 
     for job in jobs:
         if job.details:
-            details = job.details.split(",")
-            job.details = details
-        
-    for job in Job.objects.all():
-        print(f"Job: {job.name}, Category: '{job.category}'")
+            job.details = job.details.split(",")
+
     context = {
-        # "form" : form,
-        "jobs" : jobs,
+        "jobs": jobs,
     }
     return render(request, "jobs.html", context)
 
+@login_required
+def add_job_view(request):
+    if request.method == 'POST' and request.user.user_type == 'employer':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        details = request.POST.get('details')
+        schedule = request.POST.get('schedule')
+        salary = request.POST.get('salary')
+
+        Job.objects.create(
+            name=name,
+            description=description,
+            details=details,
+            schedule=schedule,
+            salary=salary,
+        )
+    return redirect('find_jobs_view')
 
 def apply_for_job(request):
     if request.method == 'POST':
@@ -52,12 +67,11 @@ def apply_for_job(request):
                 for chunk in cover_letter.chunks():
                     destination.write(chunk)
 
-        # Optionally, log or save application data to a model
         job_id = request.POST.get('job_id')
         print(f"Job ID: {job_id}")
         job = Job.objects.get(id=job_id)
         worker = request.user
         Application.objects.get_or_create(worker=worker, job=job)
-        return redirect('find_jobs_view')  # Redirect back to the jobs page
+        return redirect('find_jobs_view') 
 
     return redirect('find_jobs_view')

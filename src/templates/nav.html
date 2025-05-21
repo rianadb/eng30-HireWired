@@ -3,72 +3,61 @@
     <div class="navbar-brand">
         <div class="nav-logo"></div>
     </div>
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a href="{% url 'homepage_view' %}" class="nav-link">Home</a> 
-            </li>
-            
+    <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+            <a href="{% url 'homepage_view' %}" class="nav-link">Home</a>
+        </li>
+
+        {% if user.is_authenticated %}
             {% if user.user_type == 'worker' %}
-            <li class="nav-item">
-                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
-            </li>
-            {% elif user.user_type == 'employer' %}
-            <li class="nav-item">
-                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
-            </li>
-            <li class="nav-item">
-                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
-            </li>
-            {% endif %}
-        </ul>
-        
-        <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-                <div class="navbar-text">
-                    Welcome, {{ user.username }}
-                </div>
+                <li class="nav-item">
+                    <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
                 </li>
-            {% if user.user_type == 'worker' %}
-            <li class="nav-item">
-                <a href="{% url 'edit_profile_view' %}" class="nav-link">Edit Profile</a>
-            </li>
             {% elif user.user_type == 'employer' %}
+                <li class="nav-item">
+                    <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
+                </li>
+            {% endif %}
             <li class="nav-item">
-                <a href="{% url 'edit_employer_profile_view' %}" class="nav-link">Edit Profile</a>
+                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
             </li>
+        {% else %}
+            <li class="nav-item">
+                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
+            </li>
+        {% endif %}
+    </ul>
+
+    <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <div class="navbar-text">Welcome, {{ user.username }}</div>
+            </li>
+            {% if user.user_type == 'worker' %}
+                <li class="nav-item">
+                    <a href="{% url 'edit_profile_view' %}" class="nav-link">Edit Profile</a>
+                </li>
+            {% elif user.user_type == 'employer' %}
+                <li class="nav-item">
+                    <a href="{% url 'edit_employer_profile_view' %}" class="nav-link">Edit Profile</a>
+                </li>
             {% endif %}
             <li class="nav-item">
                 <form method="POST" action="{% url 'logout_view' %}">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-link nav-link">Log Out</button>
-                </form>                
+                </form>
             </li>
-                {% else %}
+        {% else %}
             <li class="nav-item">
-                <a href="{% url 'login_view' %}" class="nav-link">Login </a>
+                <a href="{% url 'login_view' %}" class="nav-link">Login</a>
             </li>
             <li class="nav-item">
-                <a href="{% url 'register_view' %}" class="nav-link">Sign Up </a>
+                <a href="{% url 'register_view' %}" class="nav-link">Sign Up</a>
             </li>
-            {% endif %}
-        </ul>
-    </div>
-
+        {% endif %}
+    </ul>
 </nav>
