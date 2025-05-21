@@ -22,7 +22,7 @@ from django.conf.urls.static import static
 from pages.views import homepage_view, about_view, logout_view
 from session.views import register_worker_view, register_employer_view, login_view, register_view
 from findjob.views import find_jobs_view, apply_for_job
-from hireworkers.views import hire_workers_view
+from hireworkers.views import hire_workers_view, hire_worker_profile_view
 from profiles.views import edit_profile_view, edit_employer_profile_view
 
 urlpatterns = [
@@ -37,6 +37,7 @@ urlpatterns = [
     path('jobs/', find_jobs_view, name='find_jobs_view'),
     path('apply/', apply_for_job, name='apply'),
     path('workers/', hire_workers_view, name='hire_workers_view'),
+    path('workers/<int:worker_id>/', hire_worker_profile_view, name='hire_worker_profile_view'),
     path('profile/worker/', edit_profile_view, name='edit_profile_view'),
     path('profile/employer/', edit_employer_profile_view, name='edit_employer_profile_view'),
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

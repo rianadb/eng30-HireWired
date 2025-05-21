@@ -32,3 +32,14 @@ def hire_workers_view(request, *args, **kwargs):
         'applications': applications,
     }
     return render(request, 'workers.html', context)
+
+def hire_worker_profile_view(request, worker_id):
+    worker = get_user_model().objects.get(id=worker_id)
+    applications = Application.objects.filter(worker=worker)
+    jobs = [application.job for application in applications]
+
+    context = {
+        'worker': worker,
+        'jobs': jobs,
+    }
+    return render(request, 'worker_profile.html', context)

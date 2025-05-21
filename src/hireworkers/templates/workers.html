@@ -52,7 +52,7 @@
                         <h5 class="card-title">{{ app.worker.get_full_name }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ app.job.name }}</h6>
                         <p class="card-text">{{ app.worker.workerprofile.experience|truncatewords:20 }}</p>
-                        <a href="#" class="btn btn-primary">View Profile</a>
+                        <a href="{% url 'hire_worker_profile_view' app.worker.id %}" class="btn btn-primary">View Profile</a>
                     </div>
                 </div>
             </div>

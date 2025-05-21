@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <h1>Profile</h1>
+    <div class="card">
+    <div class="row mb-3">
+        <div class="col col-sm-1 col-md-3 col-lg-3">
+            <!-- <label for="profile_picture" class="form-label">{{ profile_form.profile_picture.label }}</label> -->
+             <div class="card-body">
+            <div class="mb-3">
+                {% if worker.profile.profile_picture %}
+                <img src="{{ worker.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+                {% else %}
+                <p>No profile image available.</p>
+                {% endif %}
+            </div>
+            <!-- <div class="row mb-3">
+                <div class="col mb-3">
+                    {{ profile_form.profile_picture }}
+                </div>
+            </div> -->
+            <div class="mb-3">
+                {% if jobs %}
+                    <h6 class="card-title">Current Applications:</h6>
+                    <ul class="list-group">
+                        {% for job in jobs %}
+                            <li class="list-group-item">
+                                <strong>{{ job.name }}</strong>
+                                <br>
+                                <span class="text-muted">{{ job.category }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No current applications.</p>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+        <div class="col col-sm-1 col-md-9 col-lg-9">
+            <div class="card-body">
+                <div class="row">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Full Name</p>
+                                <h5 class="mb-0">
+                                    {{ worker.first_name }} {{ worker.last_name }}
+                                </h5>
+                            </div>
+
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Email</p>
+                                {% if worker.email %}
+                                <h5 class="mb-0">
+                                    {{ worker.email }}
+                                </h5>
+                                    {% else %}
+                                <p class="mb-0">
+                                    No email provided.
+                                </p>
+                                {% endif %}
+                                    
+                            </div>
+                            
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Contact Number</p>
+                                {% if worker.workerprofile.contact_number %}
+                                <h5 class="mb-0">
+                                    {{ worker.workerprofile.contact_number }}
+                                </h5>
+                                    {% else %}
+                                <p class="mb-0">
+                                    No contact number provided.
+                                </p>
+                                {% endif %}
+                            </div>
+                            
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Experience</p>
+                                <p class="mb-0">
+                                    {{ worker.workerprofile.experience }}
+                                </p>
+                            </div>
+                            
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Details</p>
+                                <p class="mb-0">
+                                    {{ worker.workerprofile.details }}
+                                </p>
+                            </div>
+                            
+                        </li>
+
+                        <li class="list-group-item">
+                            <div class="row">
+                                <p class="text-muted mb-0">Certification</p>
+                                {% if worker.workerprofile.certification %}
+                                    <a class="card-link" href="{{ worker.workerprofile.certification.url }}" target="_blank">
+                                        <button type="button" class="btn btn-primary">
+                                            View Certification
+                                        </button>
+                                    </a>
+                                {% else %}
+                                    <p class="mb-0">No certification uploaded.</p>
+                                {% endif %}
+                            </div>
+                            
+                        </li>
+                </div>
+                <!-- <div class="row mb-3">
+                    <div class="col">
+
+                        {{ worker.email }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+
+                        {{ worker.workerprofile.contact_number }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+
+                        {{ worker.workerprofile.experience }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+
+                        {{ worker.workerprofile.details }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+
+                        {{ worker.workerprofile.certification }}
+                    </div>
+                </div> -->
+                <!-- <div class="row mb-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary w-auto">Save Changes</button>
+                    </div>
+                </div> -->
+            
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}
