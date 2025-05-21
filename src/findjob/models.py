@@ -7,8 +7,10 @@ class Job(models.Model):
     description = models.TextField(blank=True)
     category = models.CharField(max_length=255)
     schedule = models.CharField(max_length=255)
-    salary = models.DecimalField(decimal_places=2, max_digits=10)
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    rate_type = models.CharField(max_length=10, choices=[('hr', 'Per Hour'), ('day', 'Per Day')])
     details = models.TextField(blank=True)
+    city = models.CharField(max_length=100, default='Quezon')
 
 class Application(models.Model):
     worker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

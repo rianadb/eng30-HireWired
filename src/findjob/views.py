@@ -32,13 +32,16 @@ def add_job_view(request):
         details = request.POST.get('details')
         schedule = request.POST.get('schedule')
         salary = request.POST.get('salary')
-
+        rate_type = request.POST.get('rate_type')
+        city = request.POST.get('city')
         Job.objects.create(
             name=name,
             description=description,
             details=details,
             schedule=schedule,
             salary=salary,
+            rate_type=rate_type,
+            city=city,
         )
     return redirect('find_jobs_view')
 
