@@ -33,6 +33,11 @@ class UserProfileForm(forms.ModelForm):
         label="Contact Number",
         widget=forms.TextInput(attrs={"placeholder": "Contact Number", "class": "form-control" }), 
         required=False)
+        
+    location = forms.CharField(
+        label="Location",
+        widget=forms.TextInput(attrs={"placeholder": "Location", "class": "form-control" }), 
+        required=False)
     
     experience = forms.CharField(
         label="Experience",

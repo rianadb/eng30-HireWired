@@ -14,28 +14,28 @@ def hire_workers_view(request, *args, **kwargs):
     selected_category = request.GET.get('category') or (categories[0] if categories else None)
     print(selected_category)
 
-    applications = []
+    workers = []
     if selected_category:
         workers = get_user_model().objects.filter(
             workerprofile__categories__name=selected_category
         ).distinct()
-        jobs_in_category = Job.objects.filter(category=selected_category)
-        applications = Application.objects.filter(job__in=jobs_in_category)
+        # jobs_in_category = Job.objects.filter(category=selected_category)
+        # applications = Application.objects.filter(job__in=jobs_in_category)
         # worker_ids = applications.values_list('worker_id', flat=True).distinct()
         # workers = get_user_model().objects.filter(id__in=worker_ids)
 
         if search_query:
-            applications = (
-                applications.filter(worker__workerprofile__experience__icontains=search_query)
-                | applications.filter(job__name__icontains=search_query)
-                | applications.filter(job__description__icontains=search_query)
+            workers = (
+                workers.filter(workerprofile__experience__icontains=search_query)
+                | workers.filter(job__name__icontains=search_query)
+                | workers.filter(job__description__icontains=search_query)
             )
     
     context = {
         'categories': categories,
         'selected_category': selected_category,
         'workers': workers,
-        'applications': applications,
+        # 'applications': applications,
     }
     return render(request, 'workers.html', context)
 
