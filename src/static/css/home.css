@@ -1,76 +1,258 @@
+.homepage-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.header {
+    text-align: center;
+    max-width: 800px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+
+.header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content .subtitle,
+.hero-content h1,
+.hero-content .description,
+.hero-content .hero-buttons {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease forwards;
+}
+
+.hero-content .subtitle {
+  animation-delay: 0.2s;
+}
+
+.hero-content h1 {
+  animation-delay: 0.4s;
+}
+
+.hero-content .description {
+  animation-delay: 0.6s;
+}
+
+.hero-content .hero-buttons {
+  animation-delay: 0.8s;
+}
+
+.hero-section {
+    margin-bottom: 90px;
+    justify-content: center;
+    flex-direction: column;
+    height: 90vh;
+    width: 100vw;
+  position: relative;
+
+  background: url('https://blogs.iadb.org/sostenibilidad/wp-content/uploads/sites/26/2022/04/ESPS-2-banner.jpg') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); /* Dark overlay */
+  display: flex;
+  align-items: center;
+  padding-left: 5%;
+}
+
+.hero-content {
+  color: white;
+  max-width: 600px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 14px 28px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn.primary {
+  background-color: #2bbbad; /* Teal theme color */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn.primary:hover {
+  background-color: #239e96; /* Slightly darker teal */
+}
+
+.btn.secondary {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.btn.secondary:hover {
+  background-color: #f2f2f2;
+}
+
+
+
+
 .category-carousel {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
+    position: relative;
+    margin: 0 auto;
+    width: 100%; /* Use full width */
+    max-width: 1200px; /* Limit max width for centering */
+    padding: 20px;
+    margin-bottom: 110px;
 }
 
 .carousel-wrapper {
-    overflow: hidden;
     display: flex;
-    flex-direction: row;
-    width: 80%;
+    justify-content: center;
+    width: 100%; /* Make sure it takes the full width of the container */
+    overflow: hidden;
 }
 
 .carousel {
     display: flex;
+    justify-content: center;
     gap: 20px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease;
 }
 
-.category-item {
-    background-color: white;
-    border-radius: 16px;
-    padding: 30px 20px;
-    min-width: 200px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.category-item i {
-    font-size: 36px;
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.category-item h3,
-.category-item p {
-    margin: 0;
-    font-size: 18px;
-}
-
-.category-description {
-    font-size: 16px;
-    color: #666;
-}
-
-/* Rightmost blurred element */
-.category-item.blur {
-    opacity: 0.5;
-    filter: blur(3px);
-    pointer-events: none;
-}
-
-/* Carousel arrows */
 .carousel-btn {
-    background-color: #fff;
-    border: 2px solid #007bff;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    color: #007bff;
-    font-size: 24px;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin: 0 10px;
+    background-color: white;
+    border: 2px solid #3498db;
+    color: #3498db;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
 }
 
 .carousel-btn:hover {
-    background-color: #007bff;
+    background-color: #3498db;
     color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+    left: -20px; 
+}
+
+.next {
+    right: -20px; 
+}
+
+.category-item {
+    flex: 0 0 220px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0 10px;
+    font-size: 1.1rem;
+}
+
+.category-item i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.category-item p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.category-item.blur {
+    filter: blur(5px);
+    opacity: 0.5;
 }
