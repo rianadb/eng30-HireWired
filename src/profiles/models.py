@@ -14,7 +14,7 @@ class Category(models.Model):
 class WorkerProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     categories = models.ManyToManyField(Category, blank=True)
-    location = models.CharField(blank=True)
+    location = models.CharField(max_length=255, blank=True)
     experience = models.TextField(blank=True)
     details = models.TextField(blank=True)
     contact_number = models.CharField(max_length=100, blank=True)

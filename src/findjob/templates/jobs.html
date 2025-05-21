@@ -136,15 +136,11 @@
             <input type="tel" class="form-control" id="inputPhone" name="phone" required>
           </div>
 
-          <div class="mb-3">
-            <label for="resumeFile" class="form-label fw-semibold">Resume (PDF)</label>
-            <input type="file" class="form-control" id="resumeFile" name="resume" accept=".pdf">
-          </div>
+            <div class="mb-3">
+            <label for="resumeFile" class="form-label fw-semibold">Documents (PDF/JPG)</label>
+            <input type="file" class="form-control" id="resumeFile" name="resume[]" accept=".pdf, .jpg, .jpeg" multiple>
 
-          <div class="mb-3">
-            <label for="coverLetterFile" class="form-label fw-semibold">Cover Letter (PDF)</label>
-            <input type="file" class="form-control" id="coverLetterFile" name="coverLetter" accept=".pdf">
-          </div>
+            </div>
 
           <div id="successAnimation" class="text-center mt-3" style="display:none;">
             <div style="font-size: 48px; color: green;">✔</div>

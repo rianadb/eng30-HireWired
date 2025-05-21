@@ -4,40 +4,37 @@ from django.contrib.auth import get_user_model
 from .models import Review
 from profiles.models import Category
 
-# Create your views here.
 def hire_workers_view(request, *args, **kwargs):
-    search_query = request.GET.get("search_query")
-
-    # categories = Job.objects.values_list('category', flat=True).distinct()
-    # categories = list(categories)
+    selected_location = request.GET.get("location")
     categories = Category.objects.all()
-    selected_category = request.GET.get('category') or (categories[0] if categories else None)
-    print(selected_category)
+    selected_category = request.GET.get('category') or (categories[0].name if categories else None)
 
     workers = []
     if selected_category:
         workers = get_user_model().objects.filter(
             workerprofile__categories__name=selected_category
         ).distinct()
-        # jobs_in_category = Job.objects.filter(category=selected_category)
-        # applications = Application.objects.filter(job__in=jobs_in_category)
-        # worker_ids = applications.values_list('worker_id', flat=True).distinct()
-        # workers = get_user_model().objects.filter(id__in=worker_ids)
 
-        if search_query:
-            workers = (
-                workers.filter(workerprofile__experience__icontains=search_query)
-                | workers.filter(job__name__icontains=search_query)
-                | workers.filter(job__description__icontains=search_query)
-            )
-    
+        if selected_location:
+            workers = workers.filter(workerprofile__location__icontains=selected_location)
+
+    # Clean locations
+    locations = get_user_model().objects.filter(
+        workerprofile__categories__name=selected_category
+    ).exclude(workerprofile__location__isnull=True) \
+     .exclude(workerprofile__location__exact='') \
+     .values_list('workerprofile__location', flat=True).distinct()
+
     context = {
         'categories': categories,
         'selected_category': selected_category,
         'workers': workers,
-        # 'applications': applications,
+        'locations': locations,
+        'selected_location': selected_location,
     }
     return render(request, 'workers.html', context)
+
+
 
 def hire_worker_profile_view(request, worker_id):
     worker = get_user_model().objects.get(id=worker_id)

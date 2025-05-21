@@ -17,4 +17,4 @@ function changeIllustration() {
     illustration.src = illustrations[currentIndex];
 }
 
-setInterval(changeIllustration, 3000);
+setInterval(changeIllustration, 5000);

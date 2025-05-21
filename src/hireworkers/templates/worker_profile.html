@@ -1,180 +1,117 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'css/hireworker_prof.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
+
 {% block content %}
-<div class="body-container">
-    <h1>Profile</h1>
-    <div class="card">
-    <div class="row mb-3">
-        <div class="col col-sm-1 col-md-3 col-lg-3">
-            <!-- <label for="profile_picture" class="form-label">{{ profile_form.profile_picture.label }}</label> -->
-             <div class="card-body">
-            <div class="mb-3">
-                {% if worker.profile.profile_picture %}
-                <img src="{{ worker.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
-                {% else %}
-                <p>No profile image available.</p>
-                {% endif %}
+<div class="container my-5">
+    <h2 class="mb-4">Worker Profile</h2>
+    <div class="row">
+        <!-- LEFT COLUMN -->
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-body text-center">
+                    {% if worker.profile.profile_picture %}
+                        <img src="{{ worker.profile.profile_picture.url }}" class="img-fluid rounded-circle mb-3" style="width: 150px;" alt="Profile Picture">
+                    {% else %}
+                        <p>No profile image available.</p>
+                    {% endif %}
+                    <h5 class="card-title mb-1">{{ worker.first_name }} {{ worker.last_name }}</h5>
+                    <p class="text-muted">{{ worker.workerprofile.location }}</p>
+                </div>
             </div>
-            <!-- <div class="row mb-3">
-                <div class="col mb-3">
-                    {{ profile_form.profile_picture }}
-                </div>
-            </div> -->
+
             <div class="card">
-                {% if jobs %}
-                    <ul class="list-group list-group-flush">
-                        <div class="card-header">
-                    Current Applications
-                </div>
+                <div class="card-header bg-light fw-bold">Current Applications</div>
+                <ul class="list-group list-group-flush">
+                    {% if jobs %}
                         {% for job in jobs %}
-                            <li class="list-group-item ">
-                                <strong>{{ job.name }}</strong>
-                                <br>
-                                <span class="text-muted">{{ job.category }}</span>
+                        <li class="list-group-item">
+                            <strong>{{ job.name }}</strong><br>
+                            <span class="text-muted">{{ job.category }}</span>
+                        </li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item">No current applications.</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="mb-3 text-primary">Profile Information</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <small class="text-muted">Email</small><br>
+                            <strong>{{ worker.email|default:"No email provided." }}</strong>
+                        </li>
+                        <li class="list-group-item">
+                            <small class="text-muted">Contact Number</small><br>
+                            <strong>{{ worker.workerprofile.contact_number|default:"No contact number provided." }}</strong>
+                        </li>
+                        <li class="list-group-item">
+                            <small class="text-muted">Experience</small><br>
+                            <p class="mb-0">{{ worker.workerprofile.experience }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <small class="text-muted">Details</small><br>
+                            <p class="mb-0">{{ worker.workerprofile.details }}</p>
+                        </li>
+                        <li class="list-group-item">
+                            <small class="text-muted">Certification</small><br>
+                            {% if worker.workerprofile.certification %}
+                                <a href="{{ worker.workerprofile.certification.url }}" target="_blank" class="btn btn-sm btn-outline-primary mt-1">
+                                    View Certification
+                                </a>
+                            {% else %}
+                                <p class="mb-0">No certification uploaded.</p>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="mb-3 text-primary">Reviews</h5>
+                    <ul class="list-group mb-3">
+                        {% for review in reviews %}
+                            <li class="list-group-item">
+                                <strong>{{ review.reviewer.get_full_name|default:"Anonymous" }}</strong>
+                                <p class="mb-1">{{ review.comment }}</p>
+                                <small class="text-muted">{{ review.created_at|date:"M d, Y H:i" }}</small>
                             </li>
+                        {% empty %}
+                            <li class="list-group-item">No reviews yet.</li>
                         {% endfor %}
                     </ul>
-                {% else %}
-                    <p>No current applications.</p>
-                {% endif %}
-            </div>
-            </div>
-        </div>
-        <div class="col col-sm-1 col-md-9 col-lg-9">
-            <div class="card-body">
-                <div class="row">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Full Name</p>
-                                <h5 class="mb-0">
-                                    {{ worker.first_name }} {{ worker.last_name }}
-                                </h5>
-                            </div>
 
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Email</p>
-                                {% if worker.email %}
-                                <h5 class="mb-0">
-                                    {{ worker.email }}
-                                </h5>
-                                    {% else %}
-                                <p class="mb-0">
-                                    No email provided.
-                                </p>
-                                {% endif %}
-                                    
-                            </div>
-                            
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Contact Number</p>
-                                {% if worker.workerprofile.contact_number %}
-                                <h5 class="mb-0">
-                                    {{ worker.workerprofile.contact_number }}
-                                </h5>
-                                    {% else %}
-                                <p class="mb-0">
-                                    No contact number provided.
-                                </p>
-                                {% endif %}
-                            </div>
-                            
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Location</p>
-                                <h5 class="mb-0">
-                                    {{ worker.workerprofile.location }}
-                                </h5>
-                            </div>
-
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Experience</p>
-                                <p class="mb-0">
-                                    {{ worker.workerprofile.experience }}
-                                </p>
-                            </div>
-                            
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Details</p>
-                                <p class="mb-0">
-                                    {{ worker.workerprofile.details }}
-                                </p>
-                            </div>
-                            
-                        </li>
-
-                        <li class="list-group-item">
-                            <div class="row">
-                                <p class="text-muted mb-0">Certification</p>
-                                {% if worker.workerprofile.certification %}
-                                    <a class="card-link" href="{{ worker.workerprofile.certification.url }}" target="_blank">
-                                        <button type="button" class="btn btn-primary">
-                                            View Certification
-                                        </button>
-                                    </a>
-                                {% else %}
-                                    <p class="mb-0">No certification uploaded.</p>
-                                {% endif %}
-                            </div>
-                            
-                        </li>
-                </div>            
+                    {% if user.is_authenticated %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="id_comment" class="form-label">Comment:</label>
+                            <textarea name="comment" required class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                    {% else %}
+                    <p><a href="{% url 'login_view' %}">Log in</a> to leave a review.</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
-    </div>
-<br>
-<div class="card">
-    <div class="card-body">
-
-        <h4>Reviews</h4>
-        <ul class="list-group mb-3">
-            {% for review in reviews %}
-            <li class="list-group-item">
-                <strong>
-                    {{ review.reviewer.get_full_name|default:"Anonymous" }}
-                </strong>
-                <p class="mb-1">{{ review.comment }}</p>
-                <small class="text-muted">{{ review.created_at|date:"M d, Y H:i" }}</small>
-            </li>
-            {% empty %}
-            <li class="list-group-item">No reviews yet.</li>
-            {% endfor %}
-        </ul>
-        
-        {% if user.is_authenticated %}
-        <form method="post" class="mb-4">
-            {% csrf_token %}
-            <div class="mb-2">
-                <label for="id_comment">Comment:</label>
-                <textarea name="comment" required class="form-control"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit Review</button>
-        </form>
-        {% else %}
-        <p><a href="{% url 'login_view' %}">Log in</a> to leave a review.</p>
-        {% endif %}
-    </div>
-</div>
 </div>
 {% endblock %}
+
 {% block footer %}
     {% include 'footer.html' %}
 {% endblock %}

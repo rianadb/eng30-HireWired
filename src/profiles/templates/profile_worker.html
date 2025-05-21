@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block add_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
@@ -7,76 +10,92 @@
 <div class="body-container">
     <h1>Profile</h1>
     <form method="post" enctype="multipart/form-data">
-    <div class="row mb-3">
-        <div class="col col-sm-1 col-md-3 col-lg-3">
-            <!-- <label for="profile_picture" class="form-label">{{ profile_form.profile_picture.label }}</label> -->
-            <div class="mb-3">
-                {% if user.profile.profile_picture %}
-                <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
-                {% else %}
-                <p>No profile image available.</p>
-                {% endif %}
-            </div>
-            <div class="row mb-3">
-                <div class="col mb-3">
-                    {{ profile_form.profile_picture }}
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col col-sm-1 col-md-3 col-lg-3">
+                <div class="mb-3">
+                    <div class="profile-picture-container">
+                        {% if user.profile.profile_picture %}
+                        <img id="profilePreview" src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+                        {% else %}
+                        <img id="profilePreview" src="{% static 'images/default-user.png' %}" alt="Default Profile" class="profile-picture">
+                        {% endif %}
+
+                        <input type="file" id="profileUpload" name="profile_picture" accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-outline-primary mt-2" onclick="document.getElementById('profileUpload').click()">Change Profile</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col col-sm-1 col-md-9 col-lg-9">
-                {% csrf_token %}
+
+            <div class="col col-sm-1 col-md-9 col-lg-9">
                 <div class="row">
                     <div class="col mb-3">
                         <label for="first_name" class="form-label">{{ user_form.first_name.label }}</label>
                         {{ user_form.first_name }}
                     </div>
                     <div class="col mb-3">
-                        <label for="first_name" class="form-label">{{ user_form.last_name.label }}</label>
+                        <label for="last_name" class="form-label">{{ user_form.last_name.label }}</label>
                         {{ user_form.last_name }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="email" class="form-label">{{ user_form.email.label }}</label>
                         {{ user_form.email }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="contact_number" class="form-label">{{ profile_form.contact_number.label }}</label>
                         {{ profile_form.contact_number }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="location" class="form-label">{{ profile_form.location.label }}</label>
                         {{ profile_form.location }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="experience" class="form-label">{{ profile_form.experience.label }}</label>
                         {{ profile_form.experience }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="details" class="form-label">{{ profile_form.details.label }}</label>
                         {{ profile_form.details }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
                         <label for="certification" class="form-label">{{ profile_form.certification.label }}</label>
                         {{ profile_form.certification }}
                     </div>
                 </div>
+
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="certification" class="form-label">{{ profile_form.categories.label }}</label>
-                        {{ profile_form.categories }}
+                        <label for="categories" class="form-label fw-bold">Categories you work in</label>
+                        <div class="category-pill-group">
+                            {% for checkbox in profile_form.categories %}
+                                <label class="category-pill">
+                                    {{ checkbox.tag }}
+                                    {{ checkbox.choice_label }}
+                                </label>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+
+
                 <div class="row mb-3">
                     <div class="col">
                         <button type="submit" class="btn btn-primary w-auto">Save Changes</button>
@@ -84,9 +103,22 @@
                 </div>
             </div>
         </div>
-    </div>
     </form>
 </div>
+
+<!-- JS for Profile Preview -->
+<script>
+    document.getElementById('profileUpload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profilePreview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 {% endblock %}
 {% block footer %}
     {% include 'footer.html' %}
