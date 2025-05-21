@@ -10,6 +10,9 @@
             
             {% if user.user_type == 'worker' %}
             <li class="nav-item">
+                <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
+            </li>
+            <li class="nav-item">
                 <a href="{% url 'find_jobs_view' %}" class="nav-link">Find a Job</a>
             </li>
             <li class="nav-item">
