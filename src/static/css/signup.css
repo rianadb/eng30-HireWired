@@ -1,154 +1,89 @@
-.signup-page body {
-    padding-top: 100px; 
+/* signup.css */
+
+body {
     margin: 0;
-    background-color: #f8f9fa;
-}
-
-.signup-page .split-screen {
-    display: flex;
-    width: 100%;
-    min-height: calc(100vh - 180px);
+    padding: 0;
     box-sizing: border-box;
-    gap: 40px;
-    padding: 40px 0;
+    background-color: #f7f9fc;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-.signup-page .illustration-container {
+.split-screen {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.illustration-container {
     flex: 1;
-    background-color: #eaf4fc;
+    background-color: #f0f2f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 90px;
-    margin-left: 5%; 
-    border-radius: 0 20px 20px 0; 
+    padding: 2rem;
 }
 
-.signup-page .illustration-container img {
-    width: 70%;
-    max-width: 500px;
+.illustration-container img {
+    max-width: 100%;
     height: auto;
-    animation: fadeIn 1s ease-in-out;
+    object-fit: contain;
+    transition: all 0.5s ease-in-out;
 }
 
-.signup-page .signup-form {
+.signup-form {
     flex: 1;
-    background-color: #ffffff;
-    padding: 60px 40px;
+    background-color: white;
+    padding: 4rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-sizing: border-box;
-    max-width: 600px;
-    margin-right: 5%;
-    border-radius: 20px 0 0 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    align-items: center;
 }
 
-.signup-page h1 {
-    font-size: 2.2rem;
-    color: #333;
-    margin-bottom: 30px;
+.signup-form h4 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 
-.signup-page .form-label {
-    font-weight: 600;
-    color: #495057;
-    margin-bottom: 8px;
-    display: block;
-}
-
-.signup-page .form-label.required::after {
-    content: " *";
-    color: #dc3545;
-}
-
-.signup-page .form-label i {
-    margin-right: 8px;
-    color: #3498db;
-}
-
-.signup-page input[type="text"],
-.signup-page input[type="email"],
-.signup-page input[type="password"],
-.signup-page input[type="tel"] {
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
     width: 100%;
-    padding: 12px 15px;
-    margin: 8px 0 20px 0;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
+}
+
+.btn.btn-primary {
+    width: 150px;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-.signup-page input[type="text"]:focus,
-.signup-page input[type="email"]:focus,
-.signup-page input[type="password"]:focus,
-.signup-page input[type="tel"]:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-}
-
-.signup-page button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 14px;
     border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    width: 100%;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 20px;
 }
 
-.signup-page button[type="submit"]:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-}
-
-.signup-page .errors {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
-
-.signup-page .errors-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.signup-page .errors-list li {
-    margin-bottom: 8px;
-}
-
+/* Responsive Adjustments */
 @media (max-width: 992px) {
-    .signup-page .split-screen {
+    .split-screen {
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
+        height: auto;
     }
 
-    .signup-page .illustration-container {
-        margin: 0;
-        border-radius: 0;
-        padding: 40px;
+    .illustration-container,
+    .signup-form {
+        width: 100%;
+        height: auto;
+        padding: 2rem;
     }
 
-    .signup-page .signup-form {
-        margin: 0 auto;
-        border-radius: 0;
-        padding: 40px 20px;
+    .signup-form h4 {
+        font-size: 1.25rem;
     }
-}
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    .button-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn.btn-primary {
+        width: 100%;
+    }
 }
