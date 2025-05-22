@@ -21,9 +21,11 @@
         <link rel="stylesheet" href="{% static 'css/footer.css' %}">
         {% block add_css %}{% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
         {% block nav %}{% endblock %}
-        {% block content %}{% endblock %}
+        <main class="flex-fill">
+            {% block content %}{% endblock %}
+        </main>
         <footer>{% block footer %}{% endblock  %}</footer>
     </body>
     <!-- Add scripts if needed -->
