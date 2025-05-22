@@ -1,0 +1,114 @@
+/* --- General Container Styling --- */
+.applied-jobs-wrapper {
+    padding: 2rem 1rem;
+    background-color: #f1f5f9;
+}
+
+.container-custom {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* --- Section Title --- */
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1f2937;
+}
+
+/* --- Application Card --- */
+.application-card {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #e5e7eb;
+}
+
+.application-card:hover {
+    transform: scale(1.01);
+}
+
+.application-card h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #111827;
+}
+
+.application-card .location {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.application-card .description {
+    font-size: 1rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+/* --- Details Section --- */
+.application-card .details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.salary {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2563eb;
+}
+
+.applied-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* --- Status Pill --- */
+.status-pill {
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.75rem;
+    text-transform: capitalize;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Status Colors */
+.status-pending {
+    background-color: #fde68a;
+    color: #78350f;
+}
+
+.status-approved {
+    background-color: #bbf7d0;
+    color: #065f46;
+}
+
+.status-rejected {
+    background-color: #fecaca;
+    color: #7f1d1d;
+}
+
+/* --- No Jobs Message --- */
+.no-jobs-text {
+    text-align: center;
+    color: #6b7280;
+    font-size: 1rem;
+    padding: 2rem;
+}

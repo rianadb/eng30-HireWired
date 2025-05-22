@@ -13,10 +13,19 @@ class Job(models.Model):
     city = models.CharField(max_length=100, default='Quezon')
 
 class Application(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected'),
+    ]
+
     worker = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     applied_at = models.DateTimeField(auto_now_add=True)
-
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
 
     class Meta:
         unique_together = ('worker', 'job')  # Prevent duplicate applications
+
+    def __str__(self):
+        return f"{self.worker} - {self.job} - {self.status}"

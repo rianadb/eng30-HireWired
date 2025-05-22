@@ -1,16 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block add_css %}
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-{% endblock  %}
+    <link rel="stylesheet" href="{% static 'css/w_dashboard.css' %}">
+{% endblock %}
+
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
-{% block content %}
-<div class="container body-container">
-    <h3>Dashboard</h3>
-</div>
 
+{% block content %}
+<div class="applied-jobs-wrapper page-fade-in">
+  <div class="container-custom">
+    <h1 class="section-title">Your Applied Jobs</h1>
+    {% if applications %}
+      {% for app in applications %}
+        <div class="application-card">
+          <h4>{{ app.job.name }}</h4>
+          <div class="location">📍 {{ app.job.city }}</div>
+          <div class="description">{{ app.job.description|truncatewords:20 }}</div>
+          <div class="details">
+            <div>
+              <div class="salary">
+                ₱{{ app.job.salary }} /
+                {% if app.job.rate_type %}
+                  {{ app.job.get_rate_type_display }}
+                {% else %}
+                  {% if app.job.salary < 610 %}hour{% else %}day{% endif %}
+                {% endif %}
+              </div>
+              <div class="applied-date">Applied on: {{ app.applied_at|date:"F j, Y" }}</div>
+            </div>
+            <span class="status-pill status-{{ app.status }}">{{ app.get_status_display }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p class="no-jobs-text">You haven’t applied to any jobs yet.</p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}
 
 {% block footer %}

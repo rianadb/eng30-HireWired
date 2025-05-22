@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import logout
+from findjob.models import Application  # import at the top
 
 # Create your views here.
 def homepage_view(request, *args, **kwargs):
@@ -24,11 +25,15 @@ def dashboard_view(request, *args, **kwargs):
     if not request.user.is_authenticated:
         return redirect('homepage_view')
 
-    context = {}
     if request.user.user_type == "worker":
+        applications = Application.objects.filter(worker=request.user).select_related('job')
+        
+        context = {
+            "applications": applications
+        }
         return render(request, "dashboard_worker.html", context)
 
     elif request.user.user_type == "employer":
-        return render(request, "dashboard_employer.html", context)
-        
+        return render(request, "dashboard_employer.html")
+
     return redirect('homepage_view')

@@ -21,14 +21,13 @@
                     <a href="{% url 'hire_workers_view' %}" class="nav-link">Hire Workers</a>
                 </li>
             {% endif %}
-            <li class="nav-item">
-                <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
-            </li>
+
         {% else %}
             <li class="nav-item">
                 <a href="{% url 'about_view' %}" class="nav-link">About Us</a>
             </li>
         {% endif %}
+        
     </ul>
 
     <ul class="navbar-nav ms-auto">
