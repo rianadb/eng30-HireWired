@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block add_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock  %}
+{% block nav %}
+    {% include 'nav.html' %}
+{% endblock %}
+{% block content %}
+<div class="homepage-container">
+    <h3>Dashboard</h3>
+</div>
+<script src="{% static 'js/home_script.js' %}"></script>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock %}

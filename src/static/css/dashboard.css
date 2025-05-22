@@ -1,0 +1,11 @@
+body {
+  font-family: 'Inter', sans-serif;
+  padding-top: 80px;
+  position: relative;
+  background-color: #f4f6f8;
+}
+
+.body-container {
+    display: block;
+    margin: 50px;
+}
