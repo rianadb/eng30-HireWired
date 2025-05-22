@@ -1,16 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block add_css %}
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 {% endblock  %}
 {% block nav %}
     {% include 'nav.html' %}
 {% endblock %}
 {% block content %}
-<div class="homepage-container">
-    <h3>Dashboard</h3>
+<div class="container body-container">
+    <h1>Dashboard</h1>
+    <p>View applicants of each of your job postings here.</p>
+    <div class="row">
+        {% for item in jobs_with_applicants %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <strong>{{ item.job.name }}</strong>
+                        </h4>
+                        <p>{{ item.job.description }}</p>
+                        <h6><strong>Applicants</strong></h6>
+                        <ul class="list-group list-group-flush">
+                            {% for app in item.applications %}
+                                <li class="list-group-item">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            {% if app.worker.workerprofile.profile_picture %}
+                                                <img src="{{ app.worker.workerprofile.profile_picture.url }}" alt="Profile" class="rounded-circle" style="width:48px; height:48px; object-fit:cover;">
+                                            {% else %}
+                                                <span style="width:48px; height:48px; display:inline-block; background:#eee; border-radius:50%;"></span>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col ps-0">
+                                            <strong>{{ app.worker.get_full_name }}</strong><br>
+                                            {{ app.worker.email }}<br>
+                                            <small class="text-muted">{{ app.worker.workerprofile.contact_number|default:"No contact" }}</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            {% if app.status == "pending" %}
+                                                <form method="post" style="display:inline;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="application_id" value="{{ app.id }}">
+                                                    <button type="submit" name="action" value="accept" class="btn btn-success btn-sm">Hire</button>
+                                                    <button type="submit" name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
+                                                </form>
+                                            {% elif app.status == "accepted" %}
+                                                <span class="badge bg-success">Hired</span>
+                                            {% elif app.status == "rejected" %}
+                                                <span class="badge bg-danger">Rejected</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>                            
+                                </li>
+                            {% empty %}
+                                <li>No applicants yet.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>You have not posted any jobs yet.</p>
+        {% endfor %}
+    </div>
+
 </div>
-<script src="{% static 'js/home_script.js' %}"></script>
+
 {% endblock %}
 
 {% block footer %}

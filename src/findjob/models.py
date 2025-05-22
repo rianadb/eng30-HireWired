@@ -11,6 +11,7 @@ class Job(models.Model):
     rate_type = models.CharField(max_length=10, choices=[('hr', 'Per Hour'), ('day', 'Per Day')])
     details = models.TextField(blank=True)
     city = models.CharField(max_length=100, default='Quezon')
+    employer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='jobs', limit_choices_to={'user_type': 'employer'}, null=True, blank=True)
 
 class Application(models.Model):
     STATUS_CHOICES = [
